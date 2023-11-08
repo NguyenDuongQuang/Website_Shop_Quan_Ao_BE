@@ -1,7 +1,8 @@
 package com.example.backend.security.jwt;
 
 
-import com.example.backend.core.security.config.custom.CustomUserDetails;
+
+import com.example.backend.security.config.custom.CustomUserDetails;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
