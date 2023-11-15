@@ -19,8 +19,6 @@ import java.util.Set;
 @ToString
 public class CustomUserDetails implements UserDetails {
     private Long id;
-    private Integer id_customer;
-    private Integer id_staff;
     private String email;
     private String username;
     @JsonIgnore
@@ -36,10 +34,8 @@ public class CustomUserDetails implements UserDetails {
         return Collections.singleton(new SimpleGrantedAuthority(role));
     }
 
-    public CustomUserDetails(Long id, Integer id_customer, Integer id_staff, String email, String username, String password, String role) {
+    public CustomUserDetails(Long id, String email, String username, String password, String role) {
         this.id = id;
-        this.id_customer = id_customer;
-        this.id_staff = id_staff;
         this.email = email;
         this.username = username;
         this.password = password;
@@ -49,8 +45,6 @@ public class CustomUserDetails implements UserDetails {
     public static CustomUserDetails mapUserToUserDetail(Users users){
         return new CustomUserDetails(
                 users.getId(),
-                users.getId_customer(),
-                users.getId_staff(),
                 users.getEmail(),
                 users.getUsername(),
                 users.getPassword(),

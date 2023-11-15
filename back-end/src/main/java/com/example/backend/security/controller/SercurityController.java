@@ -61,15 +61,15 @@ public class SercurityController {
 
     }
 
-//    @PostMapping("/sign-in")
-//    public ResponseEntity<?> login(@Valid @RequestBody SingInRequest signInRequet, HttpServletRequest request ){
-//        Authentication authentication = authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(signInRequet.getUsername(), signInRequet.getPassword())
-//        );
-//        UsersDTO usersDTO = new UsersDTO();
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-//        String token = jwtTokenProvider.generateToken(customUserDetails);
-//        return ResponseEntity.ok(new JwtResponse(token, usersDTO.toUserDTO(customUserDetails)));
-//    }
+    @PostMapping("/sign-in")
+    public ResponseEntity<?> login(@Valid @RequestBody SingInRequest signInRequet, HttpServletRequest request ){
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(signInRequet.getUsername(), signInRequet.getPassword())
+        );
+        UsersDTO usersDTO = new UsersDTO();
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+        String token = jwtTokenProvider.generateToken(customUserDetails);
+        return ResponseEntity.ok(new JwtResponse(token, usersDTO.toUserDTO(customUserDetails)));
+    }
 }

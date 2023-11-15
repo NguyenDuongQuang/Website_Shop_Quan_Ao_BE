@@ -1,4 +1,4 @@
 package com.example.backend.admin.dto;
 
-public class SizeDTO {
+public class BillAdminDTO {
 }

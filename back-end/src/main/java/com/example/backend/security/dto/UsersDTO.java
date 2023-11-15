@@ -13,16 +13,12 @@ public class UsersDTO {
     private Long id;
     private String username;
     private String email;
-    private Integer id_customer;
-    private Integer id_staff ;
     private String role;
 
     public UsersDTO toUserDTO(CustomUserDetails customUserDetails){
         this.setId(customUserDetails.getId());
         this.setUsername(customUserDetails.getUsername());
         this.setEmail(customUserDetails.getEmail());
-        this.setId_customer(customUserDetails.getId_customer());
-        this.setId_staff(customUserDetails.getId_staff());
         this.setRole(customUserDetails.getRole());
         return  UsersDTO.this;
     }

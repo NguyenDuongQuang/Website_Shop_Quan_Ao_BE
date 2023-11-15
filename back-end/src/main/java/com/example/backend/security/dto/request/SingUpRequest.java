@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SingUpRequest {
-    private String fullname;
+    private String name;
     private String username;
     private String password;
     private String email;

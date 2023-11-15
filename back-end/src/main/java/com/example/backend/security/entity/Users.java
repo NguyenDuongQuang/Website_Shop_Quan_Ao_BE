@@ -19,22 +19,30 @@ import java.util.Set;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "Id")
     private Long id;
-    @Column(name = "username")
+    @Column(name = "Username")
     private String username;
-    @Column(name = "password")
+    @Column(name = "Name")
+    private String name;
+    @Column(name = "Password")
     private String password;
     @Column(name = "email")
     private String email;
-    @Column(name = "id_customer")
-    private Integer id_customer;
-    @Column(name = "id_staff")
-    private Integer id_staff ;
-    @Column(name = "update_date")
-    private Integer update_date;
-    @Column(name = "create_date")
-    private Instant createDate;
-    @Column(name = "roles")
+    @Column(name = "Phone")
+    private String phone;
+    @Column(name = "Status")
+    private int status;
+    @Column(name = "Image")
+    private String image;
+    @Column(name = "Note")
+    private String note;
+    @Column(name = "Created_At")
+    private Integer Created_At;
+    @Column(name = "Updated_At")
+    private Instant Updated_At;
+    @Column(name = "Uodated_By")
+    private String Uodated_By;
+    @Column(name = "Id_Role")
     private String role;
 }
