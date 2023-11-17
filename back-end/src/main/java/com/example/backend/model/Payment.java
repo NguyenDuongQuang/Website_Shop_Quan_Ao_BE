@@ -2,19 +2,18 @@ package com.example.backend.model;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.util.Date;
+import java.math.BigDecimal;
 
-@Table(name = "Brand")
+@Table(name = "PaymentMethod")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Brand {
+public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +23,16 @@ public class Brand {
     @Column(name = "Name")
     private String name;
 
-    @Column(name = "CreateDate")
-    private Date createDate;
+    @Column(name = "Money")
+    private BigDecimal money;
 
-    @Column(name = "UpdateDate")
-    private Date updateDate;
+    @Column(name = "Description")
+    private String description;
 
     @Column(name = "Status")
     private Integer status;
 
+    @ManyToOne
+    @JoinColumn(name = "BillId", referencedColumnName = "Id")
+    private Bill bill;
 }

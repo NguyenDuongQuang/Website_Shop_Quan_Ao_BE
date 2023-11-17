@@ -1,18 +1,20 @@
 package com.example.backend.model;
 
+
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-@Table(name = "Image")
+@Table(name = "Account")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Image {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +23,22 @@ public class Image {
 
     @Column(name = "Name")
     private String name;
+
+    @Column(name = "Birthday")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthday;
+
+    @Column(name = "Email")
+    private String email;
+
+    @Column(name = "PhoneNumber")
+    private String phoneNumber;
+
+    @Column(name = "Password")
+    private String password;
+
+    @Column(name = "Avatar")
+    private String avatar;
 
     @Column(name = "CreateDate")
     private Date createDate;
@@ -32,7 +50,6 @@ public class Image {
     private Integer status;
 
     @ManyToOne
-    @JoinColumn(name = "ProductDetailId", referencedColumnName = "Id")
-    private ProductDetail productDetail;
-
+    @JoinColumn(name = "RoleId", referencedColumnName = "Id")
+    private Role role;
 }

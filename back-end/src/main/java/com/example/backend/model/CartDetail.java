@@ -3,36 +3,35 @@ package com.example.backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-@Table(name = "Image")
+@Table(name = "CartDetail")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class Image {
+public class CartDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private Integer id;
 
-    @Column(name = "Name")
-    private String name;
+    @Column(name = "Quantity")
+    private Integer quantity;
 
-    @Column(name = "CreateDate")
-    private Date createDate;
+    @Column(name = "Price")
+    private BigDecimal price;
 
-    @Column(name = "UpdateDate")
-    private Date updateDate;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "CartId", referencedColumnName = "Id")
+    private Cart cart;
 
-    @Column(name = "Status")
-    private Integer status;
-
-    @ManyToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ProductDetailId", referencedColumnName = "Id")
     private ProductDetail productDetail;
-
 }
+

@@ -1,27 +1,32 @@
 package com.example.backend.model;
 
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Table(name = "ProductDetail")
+@Table(name = "PromotionDetail")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class ProductDetail {
+public class PromotionDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private Integer id;
 
-    @Column(name = "Quantity")
-    private Integer quantity;
+    @NotBlank(message = "Name Khong duoc de trong")
+    @Size(max = 50, message = "Code khong duoc vuot qua 50 ky tu")
+    @Column(name = "Name")
+    private String name;
 
     @Column(name = "CreateDate")
     private Date createDate;
@@ -37,10 +42,6 @@ public class ProductDetail {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "SizeId", referencedColumnName = "Id")
-    private Size size;
-
-    @ManyToOne
-    @JoinColumn(name = "ColorId", referencedColumnName = "Id")
-    private Color color;
+    @JoinColumn(name = "PromotionId", referencedColumnName = "Id")
+    private Promotion promotion;
 }

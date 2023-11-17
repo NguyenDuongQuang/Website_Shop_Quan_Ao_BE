@@ -3,25 +3,24 @@ package com.example.backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
-@Table(name = "ProductDetail")
+@Table(name = "Role")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class ProductDetail {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private Integer id;
 
-    @Column(name = "Quantity")
-    private Integer quantity;
+    @Column(name = "Name")
+    private String name;
 
     @Column(name = "CreateDate")
     private Date createDate;
@@ -31,16 +30,4 @@ public class ProductDetail {
 
     @Column(name = "Status")
     private Integer status;
-
-    @ManyToOne
-    @JoinColumn(name = "ProductId", referencedColumnName = "Id")
-    private Product product;
-
-    @ManyToOne
-    @JoinColumn(name = "SizeId", referencedColumnName = "Id")
-    private Size size;
-
-    @ManyToOne
-    @JoinColumn(name = "ColorId", referencedColumnName = "Id")
-    private Color color;
 }

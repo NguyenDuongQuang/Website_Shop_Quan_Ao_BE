@@ -60,7 +60,7 @@ public class webConfig{
                         .requestMatchers("api/sign-up").permitAll()
                         .requestMatchers(AppConstant.API_VIEW_PERMIT).permitAll()
                         .requestMatchers(AppConstant.API_ADMIN).permitAll()
-                        .requestMatchers(AppConstant.API_STAFF).permitAll()
+//                        .requestMatchers(AppConstantshop.API_STAFF).permitAll()
                         .and().exceptionHandling()
                         .authenticationEntryPoint(jwtEntryPoint).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
             } catch (Exception e) {
