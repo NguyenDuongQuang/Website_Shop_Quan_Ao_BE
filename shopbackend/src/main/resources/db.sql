@@ -14,7 +14,8 @@ CREATE TABLE users(
 );
 CREATE TABLE category(
                          id INT PRIMARY KEY NOT NULL,
-                         name VARCHAR(100) NOT NULL
+                         name VARCHAR(100) NOT NULL,
+                         status int NOT NULL
 );
 CREATE TABLE products(
                          id INT PRIMARY KEY NOT NULL,

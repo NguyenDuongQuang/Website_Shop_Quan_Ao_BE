@@ -18,7 +18,10 @@ public class CategoriDto {
     @Column(name = "Id")
     private Long id;
 
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "status")
+    private Integer status;
 
 }

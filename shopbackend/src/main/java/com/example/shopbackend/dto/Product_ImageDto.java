@@ -4,32 +4,23 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "order_detail")
+@Table(name = "product_image")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class OrderDetailDto {
+public class Product_ImageDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "price")
-    private Float price;
-
-    @Column(name = "quantity")
-    private Integer quantity;
-
-    @Column(name = "total_money")
-    private Float total_money;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id",referencedColumnName = "id")
-    private OrderDto orderDto;
+    @Column(name = "img_url")
+    private String img_url;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id",referencedColumnName = "id")
     private ProductDto productDto;
+
 }
