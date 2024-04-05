@@ -1,5 +1,4 @@
-package com.example.shopbackend.dto;
-
+package com.example.shopbackend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Product_ImageDto {
+public class Product_Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -21,6 +20,6 @@ public class Product_ImageDto {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id",referencedColumnName = "id")
-    private ProductDto productDto;
+    private Product product;
 
 }

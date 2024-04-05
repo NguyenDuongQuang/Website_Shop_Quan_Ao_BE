@@ -1,4 +1,5 @@
-package com.example.shopbackend.dto;
+package com.example.shopbackend.entity;
+
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductDto {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -49,7 +50,7 @@ public class ProductDto {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id",referencedColumnName = "id")
-    private CategoriDto categoriDto;
+    private Category category;
 
 
 

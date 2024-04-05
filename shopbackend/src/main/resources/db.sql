@@ -1,7 +1,7 @@
 CREATE DATABASE shop_online;
-USER shop_online;
+USE shop_online;
 CREATE TABLE users(
-                      id INT PRIMARY KEY NOT NULL,
+                      id INT AUTO_INCREMENT  PRIMARY KEY,
                       fullname VARCHAR(100) DEFAULT '',
                       phone_number VARCHAR(20) NOT NULL,
                       address VARCHAR(100) DEFAULT '',
@@ -13,12 +13,12 @@ CREATE TABLE users(
                       status_user INT NOT NULL
 );
 CREATE TABLE category(
-                         id INT PRIMARY KEY NOT NULL,
+                         id INT AUTO_INCREMENT  PRIMARY KEY ,
                          name VARCHAR(100) NOT NULL,
                          status int NOT NULL
 );
 CREATE TABLE products(
-                         id INT PRIMARY KEY NOT NULL,
+                         id INT AUTO_INCREMENT  PRIMARY KEY,
                          name VARCHAR(100) NOT NULL,
                          price float NOT NULL,
                          thumbnail VARCHAR(100) DEFAULT '',
@@ -33,14 +33,14 @@ CREATE TABLE products(
                              foreign key (category_id) references category (id)
 );
 CREATE TABLE product_image(
-                              id INT PRIMARY KEY NOT NULL,
+                              id INT AUTO_INCREMENT  PRIMARY KEY ,
                               img_url VARCHAR(1000) NOT NULL,
                               `product_id` int NULL,
                               constraint FKdujockiancjr5q3jqf74hc90d
                                   foreign key (product_id) references products (id)
 );
 CREATE TABLE orders(
-                       id INT PRIMARY KEY NOT NULL,
+                       id INT AUTO_INCREMENT  PRIMARY KEY ,
                        fullname VARCHAR(100) NOT NULL,
                        email VARCHAR(50) NOT NULL,
                        phone_number VARCHAR(20) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE orders(
                            foreign key (user_id) references users (id)
 );
 CREATE TABLE order_detail(
-                             id INT PRIMARY KEY NOT NULL,
+                             id INT AUTO_INCREMENT  PRIMARY KEY ,
                              price float NULL,
                              quantity int NULL,
                              total_money FLOAT NOT NULL,
@@ -66,3 +66,4 @@ CREATE TABLE order_detail(
                              constraint FKg9du18dwb7uy1iyqj45sdwjrh
                                  foreign key (product_id) references products (id)
 )
+

@@ -1,5 +1,4 @@
-package com.example.shopbackend.dto;
-
+package com.example.shopbackend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class OrderDetailDto {
+public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -27,9 +26,9 @@ public class OrderDetailDto {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id",referencedColumnName = "id")
-    private OrderDto orderDto;
+    private Order order;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id",referencedColumnName = "id")
-    private ProductDto productDto;
+    private Product product;
 }

@@ -1,4 +1,4 @@
-package com.example.shopbackend.dto;
+package com.example.shopbackend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class OrderDto {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -47,6 +47,6 @@ public class OrderDto {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
-    private UserDto userDto;
+    private User user;
 
 }

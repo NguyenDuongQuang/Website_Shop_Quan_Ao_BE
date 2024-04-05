@@ -1,4 +1,5 @@
-package com.example.shopbackend.dto;
+package com.example.shopbackend.entity;
+
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,10 +13,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoriDto {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "name")
@@ -23,5 +24,4 @@ public class CategoriDto {
 
     @Column(name = "status")
     private Integer status;
-
 }
