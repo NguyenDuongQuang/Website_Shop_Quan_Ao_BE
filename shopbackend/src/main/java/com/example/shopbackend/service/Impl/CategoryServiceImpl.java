@@ -89,8 +89,11 @@ public class CategoryServiceImpl implements CategoryService {
             if (optionalCategory.isPresent()) {
                 Category category = optionalCategory.get();
                 category.setName(editCategory.getName());
+                category.setStatus(editCategory.getStatus());
                 categoryRepository.save(category);
+                System.out.println("Sửa Thành Công");
                 return ResponseEntity.ok(category);
+
             } else {
                 return ResponseEntity.notFound().build();
             }

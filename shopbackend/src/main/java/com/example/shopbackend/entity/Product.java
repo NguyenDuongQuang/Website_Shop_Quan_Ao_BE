@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -18,38 +19,37 @@ import java.util.Date;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "price")
-    private Float price;
+    @Column(nullable = false)
+    private float price;
 
-    @Column(name = "thumbnail")
+    @Column(nullable = false)
     private String thumbnail;
 
-    @Column(name = "description")
+    @Column(nullable = false)
     private String description;
 
-    @Column(name = "created_at")
-    private Date created_at;
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 
-    @Column(name = "update_at")
-    private Date update_at;
+    @Column(name = "update_at", nullable = false)
+    private LocalDateTime updatedAt;
 
-    @Column(name = "discount")
-    private Integer discount;
+    @Column(nullable = false)
+    private int discount;
 
-    @Column(name = "quantity")
-    private Integer quantity;
+    @Column(nullable = false)
+    private int quantity;
 
-    @Column(name = "status")
-    private Integer status;
+    @Column(nullable = false)
+    private int status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id",referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
 

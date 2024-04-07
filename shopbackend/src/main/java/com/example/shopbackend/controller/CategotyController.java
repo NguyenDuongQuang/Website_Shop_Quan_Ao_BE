@@ -43,4 +43,5 @@ public class CategotyController {
     public ResponseEntity<?>search(@PathVariable @Positive Long id){
         return ResponseEntity.ok().body(categoryService.searchAllCategory(id));
     }
+
 }
