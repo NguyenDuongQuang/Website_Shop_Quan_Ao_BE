@@ -3,6 +3,7 @@ package com.example.shopbackend.service.Impl;
 
 import com.example.shopbackend.controller.Message;
 import com.example.shopbackend.entity.Category;
+import com.example.shopbackend.entity.Product;
 import com.example.shopbackend.repository.CategoryRepository;
 import com.example.shopbackend.service.CategoryService;
 
@@ -35,30 +36,22 @@ public class CategoryServiceImpl implements CategoryService {
     public ResponseEntity<?> createCate(Category createCategory) {
         String errorMessage;
         Message errorResponse;
-
-        // Check if createCategory.getName() is null
         if (createCategory.getName() == null || !isValid(createCategory.getName())) {
             errorMessage = "Category Không Hợp Lệ";
             errorResponse = new Message(errorMessage, TrayIcon.MessageType.ERROR);
             return new ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST);
         }
-
-        // Check if the category already exists
         Category category = categoryRepository.findByName(createCategory.getName());
         if (category != null) {
             errorMessage = "Trùng Category";
             errorResponse = new Message(errorMessage, TrayIcon.MessageType.ERROR);
             return new ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST);
         }
-
-        // Create a new category
         Category newCategory = new Category();
         try {
             newCategory.setName(createCategory.getName());
             newCategory.setStatus(1);
             categoryRepository.save(newCategory);
-
-            // Fetch all categories after saving the new one
             List<Category> categories = categoryRepository.findAll();
             return ResponseEntity.ok().body(categories);
         } catch (Exception e) {
@@ -110,20 +103,35 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseEntity<List<Category>> deleteCategory(Long id) {
         try {
-            Optional<Category> optionalCategory=categoryRepository.findById(id);
-            if(optionalCategory.isPresent()){
-                Category category=optionalCategory.get();
-                category.setStatus(0);
-                categoryRepository.save(category);
-
-                List<Category>list=getAll();
-                return ResponseEntity.ok(list);
-            }else {
+            Optional<Category> optionalCategory = categoryRepository.findById(id);
+            if (optionalCategory.isPresent()) {
+                categoryRepository.deleteById(id);
+                List<Category> categories = categoryRepository.findAll();
+                return ResponseEntity.ok(categories);
+            } else {
                 return ResponseEntity.notFound().build();
             }
 
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    @Override
+    public ResponseEntity<List<Category>> deleteCategoryNgungKinhDoanh(Long id) {
+        try {
+            Optional<Category> optionalCategory = categoryRepository.findById(id);
+            if (optionalCategory.isPresent()) {
+                Category category=optionalCategory.get();
+                category.setStatus(0);
+                categoryRepository.save(category);
+                List<Category> categories = categoryRepository.findAll();
+                return ResponseEntity.ok(categories);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
         }
     }
 

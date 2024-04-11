@@ -38,6 +38,10 @@ public class CategotyController {
     public ResponseEntity<List<Category>>deleteCategory(@PathVariable("id") Long id){
         return categoryService.deleteCategory(id);
     }
+    @DeleteMapping("/deleteNgung/{id}")
+    public ResponseEntity<List<Category>>deleteCategoryNgungKinhDoanh(@PathVariable("id") Long id){
+        return categoryService.deleteCategory(id);
+    }
 
     @GetMapping("search/{id}")
     public ResponseEntity<?>search(@PathVariable @Positive Long id){

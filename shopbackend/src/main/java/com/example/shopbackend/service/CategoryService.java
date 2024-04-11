@@ -14,6 +14,7 @@ public interface CategoryService {
     ResponseEntity<Category>editCategory(Category editCategory);
 
     ResponseEntity<List<Category>> deleteCategory(Long id);
+    ResponseEntity<List<Category>> deleteCategoryNgungKinhDoanh(Long id);
 
     Category searchAllCategory(Long id);
 
