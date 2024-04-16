@@ -3,7 +3,7 @@ package com.example.shopbackend.service.Impl;
 import com.example.shopbackend.controller.Message;
 import com.example.shopbackend.entity.Category;
 import com.example.shopbackend.entity.Product;
-import com.example.shopbackend.repository.CategoryRepository;
+import com.example.shopbackend.entity.ProductImage;
 import com.example.shopbackend.repository.ProductRepository;
 import com.example.shopbackend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,6 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
-    private CategoryRepository categoryRepository;
 
     private boolean isValid(String str) {
         return str.matches("^[a-zA-Z\\d\\s\\S]+$");
@@ -58,6 +57,19 @@ public class ProductServiceImpl implements ProductService {
                 newPro.setQuantity(createProduct.getQuantity());
                 newPro.setUpdatedAt(createProduct.getUpdatedAt());
                 newPro.setCategory(createProduct.getCategory());
+
+                List<ProductImage> images= createProduct.getListImages();
+                if (images != null && images.size() > 5) {
+                    errorMessage = "Chỉ được phép thêm tối đa 5 ảnh.";
+                    errorResponse = new Message(errorMessage, TrayIcon.MessageType.ERROR);
+                    return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+                }
+                if(images !=null){
+                    for (ProductImage image :images){
+                        image.setProduct(newPro);
+                    }
+                    newPro.setListImages(images);
+                }
                 productRepository.save(newPro);
                 System.out.println("Thêm Thành Công");
                 List<Product> productList = productRepository.findAll();
@@ -105,6 +117,13 @@ public class ProductServiceImpl implements ProductService {
                     category.setId(editProduct.getCategory().getId());
                     category.setName(editProduct.getCategory().getName());
                     category.setStatus(editProduct.getCategory().getStatus());
+                    List<ProductImage> images=editProduct.getListImages();
+                    if(images!=null){
+                        for (ProductImage image :images){
+                            image.setProduct(product);
+                        }
+                        product.setListImages(images);
+                    }
                     product.setCategory(category);
                     productRepository.save(product);
                     System.out.println("Sửa Thành Công");

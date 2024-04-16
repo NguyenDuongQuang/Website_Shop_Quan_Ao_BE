@@ -1,4 +1,5 @@
 package com.example.shopbackend.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,17 +10,20 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Product_Image {
+public class ProductImage {
+    @ToString.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    @ToString.Include
     @Column(name = "img_url")
-    private String img_url;
+    private String imgUrl;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id",referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
+    @JsonIgnore
     private Product product;
 
 }

@@ -1,7 +1,6 @@
 package com.example.shopbackend.service;
 
 
-import com.example.shopbackend.entity.Category;
 import com.example.shopbackend.entity.Product;
 import org.springframework.http.ResponseEntity;
 
@@ -17,4 +16,5 @@ public interface ProductService {
     ResponseEntity<List<Product>> deleteProduct(Long id);
 
     Product searchAllProduct(Long id);
+
 }
